@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserPostPage extends BasePage {
 
@@ -40,6 +44,12 @@ public class UserPostPage extends BasePage {
     @FindBy(css = "app-comment-list > app-comment .comment-content")
     WebElement firstUserComment;
 
+    @FindBy(css = ".comment-container")
+    WebElement commentContainer;
+
+    @FindBy(css = ".comment-container > .row")
+    List<WebElement> commentRow;
+
     public boolean checkVisibilityOfModalContainerOfAPost() {
         waitForVisibilityOfElement(modalContainer);
         return true;
@@ -61,8 +71,22 @@ public class UserPostPage extends BasePage {
 
     }
 
-    public String getTextOfFirstComment() {
-        waitForVisibilityOfElement(firstUserComment);
-        return firstUserComment.getText().trim();
+//    public String getTextOfFirstComment() {
+//        waitForVisibilityOfElement(firstUserComment);
+//        return firstUserComment.getText().trim();
+//    }
+
+    public String getTextOfAComment(String username) {
+        waitForVisibilityOfElement(commentContainer);
+        List<WebElement> listOfCommentRows = new ArrayList<>(commentRow);
+        for (WebElement comment : listOfCommentRows) {
+            String commentAuthor = comment.findElement(By.cssSelector(".comment-user")).getText();
+
+            if (commentAuthor.equals(username)) {
+                return comment.findElement(By.cssSelector(".comment-content")).getText();
+            }
+        }
+
+        return "";
     }
 }

@@ -23,7 +23,8 @@ public class CommentPublicPost extends BaseClass {
         headerPage.goToLogin();
         // Enter credentials in the login form
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterUsernameOrEmail("soraya.ramirez");
+        String username = "soraya.ramirez";
+        loginPage.enterUsernameOrEmail(username);
         loginPage.enterPass("Ramirez5@hh");
         loginPage.clickSignInButton();
 
@@ -60,7 +61,8 @@ public class CommentPublicPost extends BaseClass {
         userPostPage.writeAComment(comment);
 
         // Go to the comment in the all comments container and verify it is visible or check the text
-        String writtenComment = userPostPage.getTextOfFirstComment();
+        //String writtenComment = userPostPage.getTextOfFirstComment();
+        String writtenComment = userPostPage.getTextOfAComment(username);
         Assert.assertEquals(writtenComment, comment);
     }
 }
