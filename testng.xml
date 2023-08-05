@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/HP/IdeaProjects/FinalProjectTestingSkilloWebsite">
+        <classes>
+            <class name="tests.AddPublicInfoInProfile">
+                <methods>
+                    <include name="addPublicInfoInTheProfileOfTheUser"/>
+                </methods>
+            </class>
+            <class name="tests.CommentPublicPost">
+                <methods>
+                    <include name="commentPublicPostOfAnUser"/>
+                </methods>
+            </class>
+            <class name="tests.FollowOrUnfollowOtherUser">
+                <methods>
+                    <include name="followOrUnfollowOtherUser"/>
+                </methods>
+            </class>
+            <class name="tests.LikeOrDislikePublicPost">
+                <methods>
+                    <include name="likeOrDislikePublicPost"/>
+                </methods>
+            </class>
+            <class name="tests.LoginTests">
+                <methods>
+                    <include name="loginSuccessfully"/>
+                    <include name="loginWithoutEnteringPassword"/>
+                    <include name="loginWithoutEnteringUsername"/>
+                    <include name="loginWithIncorrectCredentials"/>
+                </methods>
+            </class>
+            <class name="tests.LogoutSuccessfully">
+                <methods>
+                    <include name="logOutSuccessfullyTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
